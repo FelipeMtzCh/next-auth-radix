@@ -68,10 +68,6 @@ const SingInForm = () => {
                 message: "Password is required",
                 value: true,
               },
-              minLength: {
-                message: "Password must be at least 8 characters long",
-                value: 8,
-              },
             }}
             render={({ field }) => {
               return (
