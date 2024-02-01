@@ -7,6 +7,8 @@ import {
 import { Button, Flex, Text, TextField } from "@radix-ui/themes";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const SingUpForm = () => {
   const {
@@ -21,9 +23,26 @@ const SingUpForm = () => {
     },
   });
 
+  const router = useRouter();
+
   const onSubmit = handleSubmit(async (data) => {
     const res = await axios.post("/api/auth/register", data);
     console.log(res);
+
+    if (res?.status === 201) {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: res.data.email,
+        password: data.password,
+      });
+
+      if (!result?.ok) {
+        console.log("error");
+        return;
+      }
+
+      router.push("/dashboard");
+    }
   });
 
   return (

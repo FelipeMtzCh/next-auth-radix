@@ -5,7 +5,7 @@ import NavLink from "next/link";
 const LoginPage = () => {
   return (
     <>
-      <Container size="1" height="100%" className="p-3 md:p-0">
+      <Container size="1" height="100%" className="p-3 md:p-0 overflow-hidden">
         <Flex className="h-screen w-full items-center">
           <Card className="w-full p-7">
             <Heading>Log In</Heading>
